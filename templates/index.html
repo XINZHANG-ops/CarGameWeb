@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: black; /* 设置背景颜色为黑色 */
+            margin: 20px; /* 设置页面边距为20像素 */
+        }
+
+        #game {
+            display: block;
+            margin-bottom: 20px; /* 设置游戏窗口下方的外边距为20像素 */
+        }
+    </style>
+</head>
+<body>
+    <img id="game" src="/step" width="600" height="400">
+    <button id="switch">Switch to AI Control</button>
+    <button id="reset">Reset Game</button>
+    <script>
+        setInterval(function() {
+            document.getElementById('game').src = '/step?' + new Date().getTime();
+        }, 100);  // 每100毫秒刷新一次图片
+
+        document.getElementById('switch').addEventListener('click', function() {
+            fetch('/switch-control', {
+                method: 'POST'
+            }).then(function(response) {
+                return response.text();
+            }).then(function(control) {
+                document.getElementById('switch').textContent = 'Switch to ' + (control === 'ai' ? 'User' : 'AI') + ' Control';
+            });
+        });
+
+        document.getElementById('reset').addEventListener('click', function() {
+            fetch('/reset-game', {
+                method: 'POST'
+            });
+        });
+    </script>
+    <script>
+    window.addEventListener('keydown', function(event) {
+        fetch('/keyboard-input', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                key: event.key
+            }),
+        });
+    });
+    </script>
+</body>
+</html>

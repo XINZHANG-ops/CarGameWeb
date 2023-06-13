@@ -1,0 +1,3 @@
+trained model is under Model folder
+
+python app.py

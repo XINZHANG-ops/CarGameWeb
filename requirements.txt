@@ -1,0 +1,10 @@
+keyboard
+flask
+opencv-python
+pygame
+gym
+gym[box2d]
+Pillow
+rich
+gymnasium[box2d]
+pyglet
