@@ -9,7 +9,7 @@ from utils import *
 app = Flask(__name__)
 env = gym.make('CarRacing-v2', render_mode='rgb_array', continuous=False, domain_randomize=False)
 observation, info = env.reset()
-device = torch.device('cuda' if torch.cuda.is_available else 'cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 stacked_size = 4
 state_dim = (stacked_size, 84, 84)
