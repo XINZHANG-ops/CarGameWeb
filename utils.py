@@ -147,7 +147,7 @@ class DQN:
         self.optimizer = torch.optim.RMSprop(self.network.parameters(), lr)
 
         self.buffer = ReplayBuffer(state_dim, (1,), buffer_size)
-        self.device = torch.device('cuda' if torch.cuda.is_available else 'cpu')
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.network.to(self.device)
         self.target_network.to(self.device)
 
