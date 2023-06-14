@@ -2,7 +2,6 @@ keyboard
 flask
 opencv-python
 pygame
-gym
 Pillow
 rich
 gymnasium[box2d]
